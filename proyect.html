@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autonomia Hacker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="#Johan ureña">Johan ureña</a></h1>
+      <nav class="nav-bar">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="content/ctfs/index.html">WriteUps</a></li>
+          <li><a href="#redes-sociales">Redes sociales</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- mtx -->
+    <canvas id="matrix"></canvas>
+    <main>
+      <section id="home">
+        <!-- image in -->
+        <div class="about-container">
+          <div class="about-text">
+            <h2>WHOAMI</h2>
+            <p>
+              ¡Saludos! soy Johan ureña y bienvenidos a este sitio web.
+            </p>
+          </div>
+          <img src="img/johan.jpg" alt="Mi Foto" class="profile-picture" />
+        </div>
+      </section>
+      <hr />
+      <!--divisor -->
+      <section id="sobre-mi">
+        <div class="cv-section">
+          <h1>Mis Datos de Contacto</h1>
+          <div class="cv-container">
+            <!-- Columna de la foto -->
+            <div class="cv-photo">
+              <img src="img/perfilado.png" alt="Foto de Johan ureña" />
+            </div>
+            <!-- Columna de los datos personales -->
+            <div class="cv-details">
+              <p><strong>Nombre:</strong> Johan Ureña</p>
+              <p><strong>Correo:</strong> johan.urena14@gmail.com</p>
+              <p><strong>País:</strong> Republica Dominicana</p>
+              <p><strong>Edad:</strong> 20 años</p>
+              <p>
+                <strong>Otros datos:</strong> estudiante de informatica, trabajador en eventos infantiles
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <!--divisor -->
+      <section id="redes-sociales">
+        <div class="social-media">
+          <head>
+            <meta charset="UTF-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Mi Calendario</title>
+            <link rel="stylesheet" href="style.css" />
+          </head>
+          <h1>Redes Sociales</h1>
+          <main>
+          </main>
+          <div class="social-icons">  
+            </a>
+            <a
+              href="https://www.facebook.com/johan.urena.190260/"
+              target="_blank"
+            >
+              <img src="img/facebook.png" alt="facebook" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@twin_syti?lang=es"
+              target="_blank"
+            >
+              <img src="img/tiktok.png" alt="tiktok" />
+            </a>
+            <a
+              href="https://www.instagram.com/twin_syti/"
+              target="_blank"
+            >
+              <img src="img/insta.png" alt="instagram" />
+            </a>  
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 Johan Ureña. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+</html>
+
+<!-- JavaScript "Matrix" -->
+<script>
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+
+  // Ajustar el tamaño del canvas
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Caracteres estilo "hacking"
+  const letters = "01";
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+
+  // Arreglo para rastrear las posiciones de las columnas
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; // Fondo negro con transparencia
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00"; // Verde brillante
+    ctx.font = `${fontSize}px Courier`;
+
+    drops.forEach((y, x) => {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, x * fontSize, y * fontSize);
+
+      // Reiniciar la posición de la columna
+      if (y * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[x] = 0;
+      }
+
+      drops[x]++;
+    });
+  }
+
+  setInterval(draw, 50);
+</script>
